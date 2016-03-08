@@ -93,7 +93,11 @@
                 />
 	
 		<!-- 
-		// RUBIS ockwon 
+		 * Date: Feb 25, 2016
+		 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
+		 * 
+		 * Comments
+		 *
 		-->
         <dashboard-tile
                 android:id="@+id/nans_settings"
