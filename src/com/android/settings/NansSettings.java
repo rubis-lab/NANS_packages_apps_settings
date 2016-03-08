@@ -80,26 +80,11 @@ public class NansSettings extends SettingsPreferenceFragment implements
 			boolean enabled = mNans.isChecked();
             boolean result = Settings.Global.putInt(getContentResolver(), Settings.Global.NANS_ENABLED, enabled ? 1 : 0);
 			mScreenSwiper.setEnabled(enabled);
-			/*
-			Log.d("RUBIS", "Nans setting has been changed, flag="+enabled + ", result="+result);
-			
-			if (result)
-				Log.d("RUBIS", "Nans setting success");
-			else
-				Log.d("RUBIS", "Nans setting failed");
-			*/
         }
 
         if (preference == mScreenSwiper) {
         	boolean result = Settings.Secure.putInt(getContentResolver(), Settings.Secure.ACCESSIBILITY_SCREEN_SWIPE_ENABLED,
             		mScreenSwiper.isChecked() ? 1 : 0);
-			/*
-			Log.d("RUBIS", "ScreenSwiper setting has been changed, flag="+mScreenSwiper.isChecked()+", result=" + result);
-			if (result)
-				Log.d("RUBIS", "ScreenSwiper setting success");
-			else
-				Log.d("RUBIS", "ScreenSwiper setting failed");
-			*/
         }
 
         return true;
