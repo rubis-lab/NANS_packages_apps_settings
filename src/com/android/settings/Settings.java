@@ -48,7 +48,7 @@ public class Settings extends SettingsActivity {
 	 * Date: Feb 25, 2016
 	 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
 	 * 
-	 * Comments
+	 * Add the NansSettingsActivity.
 	 */
 	public static class NansSettingsActivity extends SettingsActivity { /* empty */ }
 	// END

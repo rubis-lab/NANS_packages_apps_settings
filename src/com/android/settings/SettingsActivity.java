@@ -226,7 +226,7 @@ public class SettingsActivity extends Activity
 			 * Date: Feb 25, 2016
 			 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
 			 * 
-			 * Comments
+			 * Add the NANS setting.
 			 */
 			R.id.nans_settings,
 			// END 
@@ -272,7 +272,7 @@ public class SettingsActivity extends Activity
 			 * Date: Feb 25, 2016
 			 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
 			 * 
-			 * Comments
+			 * Add the NANS setting.
 			 */
 			NansSettings.class.getName(),
 			// END

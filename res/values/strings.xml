@@ -1999,9 +1999,8 @@
     <!--
 	 * Date: Feb 25, 2016
 	 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
-	 * 
-	 * Comments
-	 *
+	 * 	
+	 * Add NANS setting and screen swiper setting.
     -->
     <string name="nans_settings">NANS</string>
     <string name="nans_title">NANS</string>
