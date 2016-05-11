@@ -44,7 +44,12 @@ public class Settings extends SettingsActivity {
     public static class UserDictionarySettingsActivity extends SettingsActivity { /* empty */ }
     public static class HomeSettingsActivity extends SettingsActivity { /* empty */ }
     public static class DisplaySettingsActivity extends SettingsActivity { /* empty */ }
-	// RUBIS ockwon
+	/**
+	 * Date: Feb 25, 2016
+	 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
+	 * 
+	 * Add the NansSettingsActivity.
+	 */
 	public static class NansSettingsActivity extends SettingsActivity { /* empty */ }
 	// END
     public static class DeviceInfoSettingsActivity extends SettingsActivity { /* empty */ }

@@ -93,7 +93,10 @@
                 />
 	
 		<!-- 
-		// RUBIS ockwon 
+		 * Date: Feb 25, 2016
+		 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
+		 * 
+		 * Add NANS Settting menu on the list.
 		-->
         <dashboard-tile
                 android:id="@+id/nans_settings"

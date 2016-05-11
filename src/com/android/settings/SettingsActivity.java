@@ -222,7 +222,12 @@ public class SettingsActivity extends Activity
             R.id.device_section,
             R.id.notification_settings,
             R.id.display_settings,
-			// RUBIS ockwon
+			/**
+			 * Date: Feb 25, 2016
+			 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
+			 * 
+			 * Add the NANS setting.
+			 */
 			R.id.nans_settings,
 			// END 
             R.id.storage_settings,
@@ -263,7 +268,12 @@ public class SettingsActivity extends Activity
             UserDictionarySettings.class.getName(),
             HomeSettings.class.getName(),
             DisplaySettings.class.getName(),
-			// RUBIS ockwon 
+			/**
+			 * Date: Feb 25, 2016
+			 * Copyright (C) 2016 RUBIS Laboratory at Seoul National University
+			 * 
+			 * Add the NANS setting.
+			 */
 			NansSettings.class.getName(),
 			// END
             DeviceInfoSettings.class.getName(),
