@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2007 The Android Open Source Project
+     Copyright (C) 2017 RUBIS Laboratory at Seoul National University
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -7956,4 +7957,18 @@
     <string name="protected_apps">Protected apps</string>
     <string name="saving_protected_components">Saving component state</string>
 
+    <!--
+    /**
+     * Date: Jul 10, 2017
+     * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+     *
+     * Add NANS and swipe gesture setting.
+     */
+    --> <skip />
+    <!-- NANS Settings -->
+    <!-- Sound & display settings screen, setting option name to enable NANS mode -->
+    <string name="nans_mode_title">NANS mode</string>
+    <!-- Sound & display settings screen, setting option name to enable swipe gesture -->
+    <string name="swipe_gesture_title">Swipe gesture</string>
+    <!-- END -->
 </resources>

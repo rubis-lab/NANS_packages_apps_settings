@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2010 The Android Open Source Project
+     Copyright (C) 2017 RUBIS Laboratory at Seoul National University
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -138,6 +139,24 @@
                 android:key="screen_zoom"
                 android:title="@string/screen_zoom_title"
                 settings:keywords="@string/screen_zoom_keywords" />
+
+        <!--
+        /**
+         * Date: Jul 10, 2017
+         * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+         *
+         * Add SwitchPreferences for NANS and swipe gesture setting.
+         */
+        -->
+        <!-- NANS Settings -->
+        <SwitchPreference
+                android:key="nans_mode"
+                android:title="@string/nans_mode_title" />
+
+        <SwitchPreference
+                android:key="swipe_gesture"
+                android:title="@string/swipe_gesture_title" />
+        <!-- END -->
 
         <!-- Disable on CM
         <DropDownPreference
