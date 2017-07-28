@@ -438,11 +438,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
          * Update NANS mode and swipe gesture if it is available.
          */
         if (mNansModePreference != null) {
+            Log.d(TAG, "updateState(), NANS_MODE_ENABLED");
             int value = Settings.Secure.getInt(getContentResolver(), NANS_MODE_ENABLED, 0);
             mNansModePreference.setChecked(value == 0);
             mSwipeGesturePreference.setEnabled(value == 0);
         }
         if (mSwipeGesturePreference != null) {
+            Log.d(TAG, "updateState(), SWIPE_GESTURE_ENABLED");
             int value = Settings.Secure.getInt(getContentResolver(), SWIPE_GESTURE_ENABLED, 0);
             mSwipeGesturePreference.setChecked(value == 0);
         }
@@ -519,15 +521,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
          * Setting preferences both NANS mode and swipe gesture control.
          */
         if (preference == mNansModePreference) {
+            Log.d(TAG, "onPreferenceChange(), NANS_MODE_ENABLED");
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), NANS_MODE_ENABLED,
-                    value ? 0 : 1 /* Backwards because setting is for disabling */);
+                    value ? 1 : 0 /* Backwards because setting is for disabling */);
             mSwipeGesturePreference.setEnabled(value);
         }
         if (preference == mSwipeGesturePreference) {
+            Log.d(TAG, "onPreferenceChange(), SWIPE_GESTURE_ENABLED");
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), SWIPE_GESTURE_ENABLED,
-                    value ? 0 : 1 /* Backwards because setting is for disabling */);
+                    value ? 1 : 0 /* Backwards because setting is for disabling */);
         }
         // END
         return true;
