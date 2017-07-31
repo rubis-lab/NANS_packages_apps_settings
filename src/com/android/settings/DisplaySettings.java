@@ -74,13 +74,14 @@ import static com.android.settingslib.RestrictedLockUtils.EnforcedAdmin;
 import cyanogenmod.hardware.CMHardwareManager;
 
 /**
- * Date: Jul 6, 2017
+ * Date: Jul 28, 2017
  * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
  *
  * Added libraries for NANS features.
 */
 import static android.provider.Settings.Secure.NANS_MODE_ENABLED;
 import static android.provider.Settings.Secure.SWIPE_GESTURE_ENABLED;
+import static android.provider.Settings.Secure.TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED;
 // END
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
@@ -118,15 +119,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mCameraGesturePreference;
 
     /**
-     * Date: Jul 6, 2017
+     * Date: Jul 28, 2017
      * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
      *
      * Added variables for NANS features.
      */
     private static final String KEY_NANS_MODE = "nans_mode";
     private static final String KEY_SWIPE_GESTURE = "swipe_gesture";
+    private static final String KEY_TOGGLE_OVERLAY_DISPLAY_DEVICE = "toggle_overlay_display_device";
     private SwitchPreference mNansModePreference;
     private SwitchPreference mSwipeGesturePreference;
+    private SwitchPreference mToggleOverlayDisplayDevicePreference;
     //END
 
     @Override
@@ -294,7 +297,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
 
         /**
-         * Date: Jul 9, 2017
+         * Date: Jul 28, 2017
          * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
          *
          * Initialize variables for NANS features.
@@ -304,6 +307,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mSwipeGesturePreference = (SwitchPreference) findPreference(KEY_SWIPE_GESTURE);
         mSwipeGesturePreference.setOnPreferenceChangeListener(this);
+        
+        mToggleOverlayDisplayDevicePreference 
+                = (SwitchPreference) findPreference(KEY_TOGGLE_OVERLAY_DISPLAY_DEVICE);
+        mToggleOverlayDisplayDevicePreference.setOnPreferenceChangeListener(this);
         // END
     }
 
@@ -432,21 +439,24 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
 
         /**
-         * Date: Jul 4, 2017
+         * Date: Jul 31, 2017
          * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
          *
          * Update NANS mode and swipe gesture if it is available.
          */
         if (mNansModePreference != null) {
-            Log.d(TAG, "updateState(), NANS_MODE_ENABLED");
             int value = Settings.Secure.getInt(getContentResolver(), NANS_MODE_ENABLED, 0);
-            mNansModePreference.setChecked(value == 0);
-            mSwipeGesturePreference.setEnabled(value == 0);
+            mNansModePreference.setChecked(value != 0);
+            mSwipeGesturePreference.setEnabled(value != 0);
+            mToggleOverlayDisplayDevicePreference.setEnabled(value != 0);
         }
         if (mSwipeGesturePreference != null) {
-            Log.d(TAG, "updateState(), SWIPE_GESTURE_ENABLED");
             int value = Settings.Secure.getInt(getContentResolver(), SWIPE_GESTURE_ENABLED, 0);
-            mSwipeGesturePreference.setChecked(value == 0);
+            mSwipeGesturePreference.setChecked(value != 0);
+        }
+        if (mToggleOverlayDisplayDevicePreference != null) {
+            int value = Settings.Secure.getInt(getContentResolver(), TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED, 0);
+            mToggleOverlayDisplayDevicePreference.setChecked(value != 0);
         }
         // END
     }
@@ -515,23 +525,27 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
         /**
-         * Date: Jul 4, 2017
+         * Date: Jul 28, 2017
          * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
          *
          * Setting preferences both NANS mode and swipe gesture control.
          */
         if (preference == mNansModePreference) {
-            Log.d(TAG, "onPreferenceChange(), NANS_MODE_ENABLED");
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), NANS_MODE_ENABLED,
-                    value ? 1 : 0 /* Backwards because setting is for disabling */);
+                    value ? 1 : 0);
             mSwipeGesturePreference.setEnabled(value);
+            mToggleOverlayDisplayDevicePreference.setEnabled(value);
         }
         if (preference == mSwipeGesturePreference) {
-            Log.d(TAG, "onPreferenceChange(), SWIPE_GESTURE_ENABLED");
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), SWIPE_GESTURE_ENABLED,
-                    value ? 1 : 0 /* Backwards because setting is for disabling */);
+                    value ? 1 : 0);
+        }
+        if (preference == mToggleOverlayDisplayDevicePreference) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(getContentResolver(), TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED,
+                    value ? 1 : 0);
         }
         // END
         return true;
