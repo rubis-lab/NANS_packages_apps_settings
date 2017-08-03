@@ -447,6 +447,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (mNansModePreference != null) {
             int value = Settings.Secure.getInt(getContentResolver(), NANS_MODE_ENABLED, 0);
             mNansModePreference.setChecked(value != 0);
+            if (value == 0) {
+                mSwipeGesturePreference.setChecked(false);
+                mToggleOverlayDisplayDevicePreference.setChecked(false);
+            }
             mSwipeGesturePreference.setEnabled(value != 0);
             mToggleOverlayDisplayDevicePreference.setEnabled(value != 0);
         }
@@ -534,6 +538,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), NANS_MODE_ENABLED,
                     value ? 1 : 0);
+            if (!value) {
+                mSwipeGesturePreference.setChecked(false);
+                Settings.Secure.putInt(getContentResolver(), 
+                        SWIPE_GESTURE_ENABLED, 0);
+                mToggleOverlayDisplayDevicePreference.setChecked(false);
+                Settings.Secure.putInt(getContentResolver(), 
+                        TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED, 0);
+            }
             mSwipeGesturePreference.setEnabled(value);
             mToggleOverlayDisplayDevicePreference.setEnabled(value);
         }
