@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2007 The Android Open Source Project
+     Copyright (C) 2017 RUBIS Laboratory at Seoul National University
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -7886,4 +7887,26 @@
     <!-- Trigger Carrier Provisioning [CHAR LIMIT=NONE] -->
     <string name="trigger_carrier_provisioning">Trigger Carrier Provisioning</string>
 
+    <!--
+    /**
+     * Date: Jul 28, 2017
+     * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+     *
+     * Add NANS and swipe gesture setting.
+     */
+    --> <skip />
+    <!-- NANS Settings -->
+    <!-- The title of the activity to adjust NANS settings -->
+    <string name="nans_label">NANS Settings</string>
+    <!-- NANS settings screen, setting option name to enable NANS mode -->
+    <string name="nans_mode_title">NANS mode</string>
+    <!-- NANS settings screen, setting option name to enable swipe gesture -->
+    <string name="swipe_gesture_title">Swipe gesture</string>
+    <!-- NANS settings screen, setting option description to enable toggle overlay display device -->
+    <string name="swipe_gesture_description">Swipe screen with 3 fingers</string>
+    <!-- NANS settings screen, setting option name to enable toggle overlay display device -->
+    <string name="toggle_overlay_display_device_title">Toggle overlay display</string>
+    <!-- NANS settings screen, setting option description to enable toggle overlay display device -->
+    <string name="toggle_overlay_display_device_description">Long-Press menu button</string>
+    <!-- END -->
 </resources>

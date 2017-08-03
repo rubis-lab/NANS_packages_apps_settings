@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,6 +70,17 @@ import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import static com.android.settingslib.RestrictedLockUtils.EnforcedAdmin;
 
+/**
+ * Date: Jul 6, 2017
+ * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+ *
+ * Added libraries for NANS features.
+*/
+import static android.provider.Settings.Secure.NANS_MODE_ENABLED;
+import static android.provider.Settings.Secure.SWIPE_GESTURE_ENABLED;
+import static android.provider.Settings.Secure.TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED;
+// END
+
 public class DisplaySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
     private static final String TAG = "DisplaySettings";
@@ -100,6 +112,20 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mTapToWakePreference;
     private SwitchPreference mAutoBrightnessPreference;
     private SwitchPreference mCameraGesturePreference;
+
+    /**
+     * Date: Jul 6, 2017
+     * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+     *
+     * Added variables for NANS features.
+     */
+    private static final String KEY_NANS_MODE = "nans_mode";
+    private static final String KEY_SWIPE_GESTURE = "swipe_gesture";
+    private static final String KEY_TOGGLE_OVERLAY_DISPLAY_DEVICE = "toggle_overlay_display_device";
+    private SwitchPreference mNansModePreference;
+    private SwitchPreference mSwipeGesturePreference;
+    private SwitchPreference mToggleOverlayDisplayDevicePreference;
+    //END
 
     @Override
     protected int getMetricsCategory() {
@@ -246,6 +272,23 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             mNightModePreference.setValue(String.valueOf(currentNightMode));
             mNightModePreference.setOnPreferenceChangeListener(this);
         }
+
+        /**
+         * Date: Jul 9, 2017
+         * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+         *
+         * Initialize variables for NANS features.
+         */
+        mNansModePreference = (SwitchPreference) findPreference(KEY_NANS_MODE);
+        mNansModePreference.setOnPreferenceChangeListener(this);
+
+        mSwipeGesturePreference = (SwitchPreference) findPreference(KEY_SWIPE_GESTURE);
+        mSwipeGesturePreference.setOnPreferenceChangeListener(this);
+
+        mToggleOverlayDisplayDevicePreference
+                = (SwitchPreference) findPreference(KEY_TOGGLE_OVERLAY_DISPLAY_DEVICE);
+        mToggleOverlayDisplayDevicePreference.setOnPreferenceChangeListener(this);
+        // END
     }
 
     private static boolean allowAllRotations(Context context) {
@@ -371,6 +414,30 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             int value = Settings.Secure.getInt(getContentResolver(), CAMERA_GESTURE_DISABLED, 0);
             mCameraGesturePreference.setChecked(value == 0);
         }
+        /**
+         * Date: Jul 4, 2017
+         * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+         *
+         * Update NANS mode and swipe gesture if it is available.
+         */
+        if (mNansModePreference != null) {
+            int value = Settings.Secure.getInt(getContentResolver(), NANS_MODE_ENABLED, 0);
+            mNansModePreference.setChecked(value != 0);
+            if (value == 0) {
+                mSwipeGesturePreference.setChecked(false);
+                mToggleOverlayDisplayDevicePreference.setChecked(false);
+            }
+            mSwipeGesturePreference.setEnabled(value != 0);
+        }
+        if (mSwipeGesturePreference != null) {
+            int value = Settings.Secure.getInt(getContentResolver(), SWIPE_GESTURE_ENABLED, 0);
+            mSwipeGesturePreference.setChecked(value != 0);
+        }
+        if (mToggleOverlayDisplayDevicePreference != null) {
+            int value = Settings.Secure.getInt(getContentResolver(), TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED, 0);
+            mToggleOverlayDisplayDevicePreference.setChecked(value != 0);
+        }
+        // END
     }
 
     private void updateScreenSaverSummary() {
@@ -436,6 +503,38 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 Log.e(TAG, "could not persist night mode setting", e);
             }
         }
+        /**
+         * Date: Jul 4, 2017
+         * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+         *
+         * Setting preferences both NANS mode and swipe gesture control.
+         */
+        if (preference == mNansModePreference) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(getContentResolver(), NANS_MODE_ENABLED,
+                    value ? 1 : 0 /* Backwards because setting is for disabling */);
+            if (!value) {
+                mSwipeGesturePreference.setChecked(false);
+                Settings.Secure.putInt(getContentResolver(),
+                        SWIPE_GESTURE_ENABLED, 0);
+                mToggleOverlayDisplayDevicePreference.setChecked(false);
+                Settings.Secure.putInt(getContentResolver(),
+                        TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED, 0);
+            }
+            mSwipeGesturePreference.setEnabled(value);
+            mToggleOverlayDisplayDevicePreference.setEnabled(value);
+        }
+        if (preference == mSwipeGesturePreference) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(getContentResolver(), SWIPE_GESTURE_ENABLED,
+                    value ? 1 : 0 /* Backwards because setting is for disabling */);
+        }
+        if (preference == mToggleOverlayDisplayDevicePreference) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(getContentResolver(), TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED,
+                    value ? 1 : 0);
+        }
+        // END
         return true;
     }
 

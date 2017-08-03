@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2010 The Android Open Source Project
+     Copyright (C) 2017 RUBIS Laboratory at Seoul National University
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -115,5 +116,33 @@
                 android:key="vr_display_pref"
                 android:summary="%s"
                 android:title="@string/display_vr_pref_title" />
+
+        <!--
+        /**
+         * Date: Jul 31, 2017
+         * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+         *
+         * Add SwitchPreferences for NANS and swipe gesture setting.
+         */
+        -->
+        <!-- NANS Settings -->
+        <PreferenceCategory
+                android:key="nans"
+                android:title="@string/nans_label">
+            <SwitchPreference
+                    android:key="nans_mode"
+                    android:title="@string/nans_mode_title" />
+
+            <SwitchPreference
+                    android:key="swipe_gesture"
+                    android:title="@string/swipe_gesture_title"
+                    android:summary="@string/swipe_gesture_description" />
+
+            <SwitchPreference
+                    android:key="toggle_overlay_display_device"
+                    android:title="@string/toggle_overlay_display_device_title"
+                    android:summary="@string/toggle_overlay_display_device_description" />
+        </PreferenceCategory>
+        <!-- END -->
 
 </PreferenceScreen>
