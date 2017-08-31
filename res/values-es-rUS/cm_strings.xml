@@ -157,7 +157,7 @@
   <string name="app_ops_labels_send_sms">Enviar SMS</string>
   <string name="app_ops_labels_read_icc_sms">Leer mensajes ICC</string>
   <string name="app_ops_labels_write_icc_sms">Editar mensajes ICC</string>
-  <string name="app_ops_labels_modify_settings">Modificar ajustes</string>
+  <string name="app_ops_labels_modify_settings">Modificar los ajustes</string>
   <string name="app_ops_labels_draw_on_top">Mostrar encima</string>
   <string name="app_ops_labels_access_notifications">Acceso a notificaciones</string>
   <string name="app_ops_labels_camera">Cámara</string>
@@ -431,4 +431,6 @@
   <!-- IC Codes -->
   <string name="ic_code_model">Modelo: %1$s</string>
   <string name="ic_code_full">IC: %1$s</string>
+  <!-- Label for settings shortcut: carrier selection -->
+  <string name="shortcut_carrier_title">Operadores de red</string>
 </resources>
