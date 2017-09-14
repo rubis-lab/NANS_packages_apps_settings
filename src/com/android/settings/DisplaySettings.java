@@ -13,6 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * If you want to use as commercial, contact us(rubis.chief@gmail.com).
  */
 
 package com.android.settings;
@@ -81,7 +82,7 @@ import cyanogenmod.hardware.CMHardwareManager;
 */
 import static android.provider.Settings.Secure.NANS_MODE_ENABLED;
 import static android.provider.Settings.Secure.SWIPE_GESTURE_ENABLED;
-import static android.provider.Settings.Secure.TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED;
+import static android.provider.Settings.Secure.RECENT_LONG_TOUCH;
 // END
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
@@ -126,11 +127,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
      */
     private static final String KEY_NANS_MODE = "nans_mode";
     private static final String KEY_SWIPE_GESTURE = "swipe_gesture";
-    private static final String KEY_TOGGLE_OVERLAY_DISPLAY_DEVICE = "toggle_overlay_display_device";
+    private static final String KEY_RECENT_LONG_TOUCH = "recent_long_touch";
     private SwitchPreference mNansModePreference;
     private SwitchPreference mSwipeGesturePreference;
-    private SwitchPreference mToggleOverlayDisplayDevicePreference;
-    //END
+    private ListPreference mRecentLongTouchPreference;
+    // END
 
     @Override
     protected int getMetricsCategory() {
@@ -307,10 +308,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mSwipeGesturePreference = (SwitchPreference) findPreference(KEY_SWIPE_GESTURE);
         mSwipeGesturePreference.setOnPreferenceChangeListener(this);
-        
-        mToggleOverlayDisplayDevicePreference 
-                = (SwitchPreference) findPreference(KEY_TOGGLE_OVERLAY_DISPLAY_DEVICE);
-        mToggleOverlayDisplayDevicePreference.setOnPreferenceChangeListener(this);
+
+        mRecentLongTouchPreference = (ListPreference) findPreference(KEY_RECENT_LONG_TOUCH);
+        mRecentLongTouchPreference.setOnPreferenceChangeListener(this);
         // END
     }
 
@@ -449,18 +449,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             mNansModePreference.setChecked(value != 0);
             if (value == 0) {
                 mSwipeGesturePreference.setChecked(false);
-                mToggleOverlayDisplayDevicePreference.setChecked(false);
             }
             mSwipeGesturePreference.setEnabled(value != 0);
-            mToggleOverlayDisplayDevicePreference.setEnabled(value != 0);
         }
         if (mSwipeGesturePreference != null) {
             int value = Settings.Secure.getInt(getContentResolver(), SWIPE_GESTURE_ENABLED, 0);
             mSwipeGesturePreference.setChecked(value != 0);
         }
-        if (mToggleOverlayDisplayDevicePreference != null) {
-            int value = Settings.Secure.getInt(getContentResolver(), TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED, 0);
-            mToggleOverlayDisplayDevicePreference.setChecked(value != 0);
+        if (mRecentLongTouchPreference != null) {
+            int value = Settings.Secure.getInt(getContentResolver(), RECENT_LONG_TOUCH, 0);
+            mRecentLongTouchPreference.setValueIndex(value);
         }
         // END
     }
@@ -542,24 +540,18 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 mSwipeGesturePreference.setChecked(false);
                 Settings.Secure.putInt(getContentResolver(), 
                         SWIPE_GESTURE_ENABLED, 0);
-                mToggleOverlayDisplayDevicePreference.setChecked(false);
-                Settings.Secure.putInt(getContentResolver(), 
-                        TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED, 0);
             }
             mSwipeGesturePreference.setEnabled(value);
-            mToggleOverlayDisplayDevicePreference.setEnabled(value);
         }
         if (preference == mSwipeGesturePreference) {
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), SWIPE_GESTURE_ENABLED,
                     value ? 1 : 0);
         }
-        if (preference == mToggleOverlayDisplayDevicePreference) {
-            boolean value = (Boolean) objValue;
-            Settings.Secure.putInt(getContentResolver(), TOGGLE_OVERLAY_DISPLAY_DEVICE_ENABLED,
-                    value ? 1 : 0);
+        if (preference == mRecentLongTouchPreference) {
+            int value = Integer.parseInt(objValue.toString());
+            Settings.Secure.putInt(getContentResolver(), RECENT_LONG_TOUCH, value);
         }
-        // END
         return true;
     }
 

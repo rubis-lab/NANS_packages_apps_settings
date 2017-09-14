@@ -13,6 +13,7 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
+     If you want to use as commercial, contact us(rubis.chief@gmail.com).
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
@@ -160,13 +161,10 @@
 
     </PreferenceCategory>
     
-    <!--
-    /**
-     * Date: Jul 31, 2017
-     * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
-     *
-     * Add SwitchPreferences for NANS and swipe gesture setting.
-     */
+    <!-- Date: Jul 31, 2017
+         Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+
+         Add Preference for NANS settings.
     -->
     <!-- NANS Settings -->
     <PreferenceCategory
@@ -181,10 +179,12 @@
                 android:title="@string/swipe_gesture_title"
                 android:summary="@string/swipe_gesture_description" />
             
-        <SwitchPreference
-                android:key="toggle_overlay_display_device"
-                android:title="@string/toggle_overlay_display_device_title" 
-                android:summary="@string/toggle_overlay_display_device_description" />
+        <ListPreference
+                android:key="recent_long_touch"
+                android:title="@string/recent_long_touch_title"
+                android:summary="@string/recent_long_touch_description"
+                android:entries="@array/recent_long_touch_entries"
+                android:entryValues="@array/recent_long_touch_values" />
     </PreferenceCategory>
     <!-- END -->
 

@@ -13,6 +13,7 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
+     If you want to use as commercial, contact us(rubis.chief@gmail.com).
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Strings for Dialog yes button -->
@@ -7957,13 +7958,10 @@
     <string name="protected_apps">Protected apps</string>
     <string name="saving_protected_components">Saving component state</string>
 
-    <!--
-    /**
-     * Date: Jul 28, 2017
-     * Copyright (C) 2017 RUBIS Laboratory at Seoul National University
-     *
-     * Add NANS and swipe gesture setting.
-     */
+    <!-- Date: Sep 6, 2017
+         Copyright (C) 2017 RUBIS Laboratory at Seoul National University
+
+         Add strings for NANS settings.
     --> <skip />
     <!-- NANS Settings -->
     <!-- The title of the activity to adjust NANS settings -->
@@ -7974,9 +7972,9 @@
     <string name="swipe_gesture_title">Swipe gesture</string>
     <!-- NANS settings screen, setting option description to enable toggle overlay display device -->
     <string name="swipe_gesture_description">Swipe screen with 3 fingers</string>
-    <!-- NANS settings screen, setting option name to enable toggle overlay display device -->
-    <string name="toggle_overlay_display_device_title">Toggle overlay display</string>
-    <!-- NANS settings screen, setting option description to enable toggle overlay display device -->
-    <string name="toggle_overlay_display_device_description">Long-Press menu button</string>
+    <!-- NANS settings screen, setting options name to handle long touch recent button preference -->
+    <string name="recent_long_touch_title">Recent long touch</string>
+    <!-- NANS settings screen, settings options description to handle long touch recent button preference -->
+    <string name="recent_long_touch_description">Long Touch Recent Button Action</string>
     <!-- END -->
 </resources>
